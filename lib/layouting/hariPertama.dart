@@ -14,14 +14,22 @@ class HariPertama extends StatelessWidget {
           title: Text('Koperasi Undiksha'),
           centerTitle: true,
         ),
+        bottomNavigationBar: Container(
+          height: MediaQuery.of(context).size.height * 0.05,
+          color: Colors.grey,
+          child: Center(
+              child: Text(
+            'copyright@2022 by Undiksha',
+            style: TextStyle(fontSize: 14),
+          )),
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
               Center(
                 child: Container(
-                  margin: EdgeInsets.only(top: 20),
-                  width: 200,
-                  height: 200,
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   child: Image(
                     image: NetworkImage(
                         'https://upload.wikimedia.org/wikipedia/commons/0/09/Logo_undiksha.png'),
@@ -29,11 +37,11 @@ class HariPertama extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
               Container(
-                width: 400,
-                height: 325,
+                width: MediaQuery.of(context).size.width * 0.8,
+                height: MediaQuery.of(context).size.height * 0.45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
@@ -44,9 +52,11 @@ class HariPertama extends StatelessWidget {
                   elevation: 10,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 10, left: 20),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 20),
                         child: Container(
                           width: 100,
                           height: 30,
@@ -86,39 +96,60 @@ class HariPertama extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: MediaQuery.of(context).size.height * 0.01,
                       ),
-                      Center(
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Home(),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: 200,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(30),
-                              ),
-                              color: Colors.blueAccent,
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Login',
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.white),
-                              ),
-                            ),
+                      // Center(
+                      //   child: GestureDetector(
+                      //     onTap: () {
+                      //       Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //           builder: (context) => Home(),
+                      //         ),
+                      //       );
+                      //     },
+                      //     child: Container(
+                      //       width: 200,
+                      //       height: 60,
+                      //       decoration: BoxDecoration(
+                      //         borderRadius: BorderRadius.all(
+                      //           Radius.circular(30),
+                      //         ),
+                      //         color: Colors.blueAccent,
+                      //       ),
+                      //       child: Center(
+                      //         child: Text(
+                      //           'Login',
+                      //           style: TextStyle(
+                      //               fontSize: 20, color: Colors.white),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: FilledButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: ((context) => Home()),
+                                ),
+                              );
+                            },
+                            style: ButtonStyle(
+                                elevation: MaterialStatePropertyAll(10),
+                                padding: MaterialStatePropertyAll(
+                                    EdgeInsets.symmetric(
+                                        horizontal: 50, vertical: 20))),
+                            child: Text('Login'),
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        padding: EdgeInsets.symmetric(horizontal: 5),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -126,14 +157,22 @@ class HariPertama extends StatelessWidget {
                               onPressed: () {},
                               child: Text(
                                 'Daftar Mbanking',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.018),
                               ),
                             ),
                             TextButton(
                               onPressed: () {},
                               child: Text(
                                 'Lupa Password ?',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.018),
                               ),
                             ),
                           ],
@@ -144,17 +183,7 @@ class HariPertama extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 60,
-              ),
-              BottomAppBar(
-                color: Colors.blueGrey,
-                height: 50,
-                child: Center(
-                  child: Text(
-                    "copyright@2022 by Undiksha",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
+                height: MediaQuery.of(context).size.height * 0.05,
               ),
             ],
           ),
