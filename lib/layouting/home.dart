@@ -34,24 +34,46 @@ class Home extends StatelessWidget {
             ),
             Center(
               child: Container(
-                width: 400,
-                height: 150,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 2),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 100,
-                      height: 100,
-                      child: Image(
-                        image: AssetImage('images/hd.png'),
-                      ),
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: MediaQuery.of(context).size.height * 0.2,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: BorderSide(color: Colors.black, width: 1)),
+                  elevation: 5,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          height: MediaQuery.of(context).size.height * 1,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            child: Image(
+                              image: AssetImage('images/hd.png'),
+                            ),
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              height: 50,
+                              color: Colors.amber,
+                            ),
+                            Container(
+                              width: 50,
+                              height: 50,
+                              color: Colors.amber,
+                            )
+                          ],
+                        )
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             )
