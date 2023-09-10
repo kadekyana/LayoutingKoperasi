@@ -38,7 +38,7 @@ class HariPertama extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
+                height: MediaQuery.of(context).size.height * 0.01,
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.8,
@@ -57,7 +57,7 @@ class HariPertama extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 20),
+                            vertical: 5, horizontal: 10),
                         child: Container(
                           width: 100,
                           height: 30,
