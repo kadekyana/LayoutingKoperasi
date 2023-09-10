@@ -11,11 +11,12 @@ class HariPertama extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.indigo[900],
           title: Text('Koperasi Undiksha'),
           centerTitle: true,
         ),
         bottomNavigationBar: Container(
-          height: MediaQuery.of(context).size.height * 0.05,
+          height: MediaQuery.of(context).size.height * 0.1,
           color: Colors.grey,
           child: Center(
               child: Text(
@@ -140,6 +141,8 @@ class HariPertama extends StatelessWidget {
                               );
                             },
                             style: ButtonStyle(
+                                backgroundColor: MaterialStatePropertyAll(
+                                    Colors.indigo[900]),
                                 elevation: MaterialStatePropertyAll(10),
                                 padding: MaterialStatePropertyAll(
                                     EdgeInsets.symmetric(
