@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "98a32e13-4da7-4ca8-8d91-190c754cb4fb",
+		"name": "Z-KOPERASI-UNDIKSHA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "7580205"
+	},
+	"item": [
+		{
+			"name": "GET ALL USERS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://apikoperasi.rey1024.com/users"
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "user2@gmail.com",
+							"description": "String",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"description": "String",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://apikoperasi.rey1024.com"
+			},
+			"response": []
+		},
+		{
+			"name": "get Single User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_id",
+							"value": "10",
+							"description": "int",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://apikoperasi.rey1024.com/getsingleuser"
+			},
+			"response": []
+		},
+		{
+			"name": "Setoran",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_id",
+							"value": "1",
+							"description": "int",
+							"type": "text"
+						},
+						{
+							"key": "jumlah_setoran",
+							"value": "1",
+							"description": "double atau int",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://apikoperasi.rey1024.com/setoran"
+			},
+			"response": []
+		},
+		{
+			"name": "Tarikan",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "jumlah_tarikan",
+							"value": "1000000",
+							"description": "double, gunakan titik (.) sebagai tanda desimal",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://apikoperasi.rey1024.com/tarikan"
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "user4@gmail.com",
+							"description": "username adalah email",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"description": "max 50 char",
+							"type": "text"
+						},
+						{
+							"key": "nama",
+							"value": "User 3",
+							"description": "String",
+							"type": "text"
+						},
+						{
+							"key": "nim",
+							"value": "123",
+							"description": "3 digit terakhir NIM",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://apikoperasi.rey1024.com/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Transfer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nomor_rekening",
+							"value": "11111",
+							"description": "String",
+							"type": "text"
+						},
+						{
+							"key": "jumlah_transfer",
+							"value": "50000",
+							"description": "double",
+							"type": "text"
+						},
+						{
+							"key": "id_pengirim",
+							"value": "2",
+							"description": "user_id",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://apikoperasi.rey1024.com/transfer"
+			},
+			"response": []
+		}
+	]
+}

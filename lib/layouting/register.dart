@@ -1,38 +1,55 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:pemmob_lanjut/layouting/home.dart';
-import 'package:get/get.dart';
-import 'package:pemmob_lanjut/layouting/register.dart';
+import 'package:pemmob_lanjut/layouting/hariPertama.dart';
+import 'package:dio/dio.dart';
 
-class HariPertama extends StatefulWidget {
-  const HariPertama({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<HariPertama> createState() => _HariPertamaState();
+  State<Register> createState() => _RegisterState();
 }
 
-final TextEditingController username = TextEditingController();
+final TextEditingController email = TextEditingController();
 final TextEditingController password = TextEditingController();
-void login(String user, String pass) async {
-  final dio = Dio();
+final TextEditingController nama = TextEditingController();
+final TextEditingController nim = TextEditingController();
+
+Future<void> register(String email, String password, String nama) async {
   try {
-    final response = await dio.post(
-      'http://apikoperasi.rey1024.com',
-      data: {"username": user, "password": pass},
+    final response = await Dio().post(
+      'http://10.0.2.2:8000/api/register',
+      data: {
+        "email": email,
+        "password": password,
+        "name": nama,
+      },
+      options: Options(
+        method: 'OPTIONS',
+        headers: {'Access-Control-Request-Method': 'POST'},
+      ),
     );
-    if (response.statusCode == 200) {
-      Get.to(Home());
+
+    if (response.statusCode == 201) {
       print(response.data);
-      print('success');
+      print("sukses");
     } else {
-      print('failed');
+      print('gagal');
     }
   } catch (e) {
     print(e);
   }
 }
 
-class _HariPertamaState extends State<HariPertama> {
+void getData() async {
+  try {
+    final response = await Dio().get('http://apikoperasi.rey1024.com/users');
+    print(response);
+  } catch (e) {
+    print(e);
+  }
+}
+
+class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -45,7 +62,7 @@ class _HariPertamaState extends State<HariPertama> {
           centerTitle: true,
         ),
         bottomNavigationBar: Container(
-          height: MediaQuery.of(context).size.height * 0.1,
+          height: MediaQuery.of(context).size.height * 0.05,
           color: Colors.grey,
           child: Center(
               child: Text(
@@ -71,7 +88,7 @@ class _HariPertamaState extends State<HariPertama> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.height * 0.55,
+                height: MediaQuery.of(context).size.height * 0.85,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
@@ -92,7 +109,7 @@ class _HariPertamaState extends State<HariPertama> {
                           height: 30,
                           padding: EdgeInsets.only(top: 10, left: 10),
                           child: Text(
-                            'Username',
+                            'Email',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -100,7 +117,51 @@ class _HariPertamaState extends State<HariPertama> {
                       Padding(
                         padding: const EdgeInsets.only(left: 20, right: 20),
                         child: TextFormField(
-                          controller: username,
+                          controller: email,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 10),
+                        child: Container(
+                          width: 100,
+                          height: 30,
+                          padding: EdgeInsets.only(top: 10, left: 10),
+                          child: Text(
+                            'Password',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: TextFormField(
+                          controller: nama,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 10),
+                        child: Container(
+                          width: 100,
+                          height: 30,
+                          padding: EdgeInsets.only(top: 10, left: 10),
+                          child: Text(
+                            'Name',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: TextFormField(
+                          controller: nim,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                           ),
@@ -113,7 +174,7 @@ class _HariPertamaState extends State<HariPertama> {
                           height: 30,
                           padding: EdgeInsets.only(top: 10),
                           child: Text(
-                            'Password',
+                            'NIM',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -121,7 +182,6 @@ class _HariPertamaState extends State<HariPertama> {
                       Padding(
                         padding: const EdgeInsets.only(left: 20, right: 20),
                         child: TextFormField(
-                          controller: password,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                           ),
@@ -164,13 +224,13 @@ class _HariPertamaState extends State<HariPertama> {
                         child: Center(
                           child: FilledButton(
                             onPressed: () {
-                              login(username.text, password.text);
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: ((context) => Home()),
-                              //   ),
-                              // );
+                              register(
+                                email.text,
+                                password.text,
+                                nama.text,
+                              );
+                              // register(email.text, password.text, nama.text,
+                              //     nim.text);
                             },
                             style: ButtonStyle(
                                 backgroundColor: MaterialStatePropertyAll(
@@ -179,7 +239,7 @@ class _HariPertamaState extends State<HariPertama> {
                                 padding: MaterialStatePropertyAll(
                                     EdgeInsets.symmetric(
                                         horizontal: 50, vertical: 20))),
-                            child: Text('Login'),
+                            child: Text('Register'),
                           ),
                         ),
                       ),
@@ -193,23 +253,12 @@ class _HariPertamaState extends State<HariPertama> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Register(),
+                                    builder: (context) => HariPertama(),
                                   ),
                                 );
                               },
                               child: Text(
-                                'Daftar Mbanking',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize:
-                                        MediaQuery.of(context).size.height *
-                                            0.018),
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                'Lupa Password ?',
+                                'Sudah Punya Akun ? Login !',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize:
