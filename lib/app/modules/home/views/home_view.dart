@@ -1,14 +1,38 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:pemmob_lanjut/app/modules/login/controllers/login_controller.dart';
 import 'package:pemmob_lanjut/app/modules/login/views/login_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../controllers/home_controller.dart';
 
-class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  HomeView({Key? key}) : super(key: key);
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final loginSp = Get.find<LoginController>();
+  String? nama = '';
+
+  Future<String?> getData() async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    nama = preferences.getString('Nama');
+    return nama;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
   @override
   Widget build(BuildContext context) {
+    print(nama);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigo[900],
@@ -96,12 +120,17 @@ class HomeView extends GetView<HomeController> {
                                     ),
                                   ),
                                   Container(
-                                      width:
-                                          MediaQuery.of(context).size.width * 1,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.025,
-                                      child: Text('I Kadek Dwi Gitayana Putra'))
+                                    width:
+                                        MediaQuery.of(context).size.width * 1,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.025,
+                                    child: Obx(
+                                      () {
+                                        var nama = loginSp.Nama.value;
+                                        return Text(nama);
+                                      },
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
